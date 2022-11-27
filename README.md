@@ -1,6 +1,6 @@
 # Postgres Database Utils
 
-A python package for database utilities.
+A python package for postgres database utilities.
 
 ## Table of Contents
 
