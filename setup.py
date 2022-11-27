@@ -4,11 +4,11 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="database-utils",
+    name="postgres-database-utils",
     version="0.1.0",
     author="apinanyogaratnam",
     author_email="apinanapinan@icloud.com",
-    description="A package for database utilities",
+    description="A package for postgres database utilities",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/apinanyogaratnam/database-utils",
