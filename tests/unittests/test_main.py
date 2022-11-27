@@ -1,4 +1,4 @@
-from database_utils.main import greetings
+from postgres_database_utils.main import greetings
 
 
 class TestMain:
