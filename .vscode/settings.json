@@ -1,5 +1,6 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
     "cSpell.words": [
+        "ignorewarnings"
     ]
 }
