@@ -1,4 +1,9 @@
+import warnings
+
+import pandas as pd
 import psycopg2
+
+warnings.ignorewarnings("ignore")
 
 
 class ConnectionError(Exception):
@@ -33,3 +38,26 @@ def create_connection(host: str, database: str, user: str, password: str, port: 
         return connection
     except (Exception, psycopg2.DatabaseError) as error:
         raise ConnectionError(error)
+
+
+def query_database(connection: psycopg2.connection, query: str, params: tuple | None = None, close_connection: bool = True) -> list:
+    """Execute a query on the database.
+
+    Args:
+        connection (psycopg2.connection): The connection to the database.
+        query (str): The query to execute.
+        params (tuple, optional): The parameters of the query. Defaults to None.
+        close_connection (bool, optional): If the connection should be closed after the query. Defaults to True.
+
+    Returns:
+        list: The result of the query.
+    """
+    if not connection:
+        raise ConnectionError("No connection to database.")
+
+    results = pd.read_sql(query, connection, params).replace({float("nan"): None}).to_dict(orient="records")
+
+    if close_connection:
+        connection.close()
+
+    return results
