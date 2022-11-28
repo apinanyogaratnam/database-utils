@@ -8,6 +8,7 @@ warnings.ignorewarnings("ignore")
 
 class ConnectionError(Exception):
     """Exception raised when connection to database fails."""
+
     pass
 
 
@@ -40,8 +41,10 @@ def create_connection(host: str, database: str, user: str, password: str, port: 
         raise ConnectionError(error)
 
 
-def query_database(connection: psycopg2.connection, query: str, params: tuple | None = None, close_connection: bool = True) -> list:
-    """Execute a query on the database.
+def query_database(
+    connection: psycopg2.connection, query: str, params: tuple | None = None, close_connection: bool = True
+) -> list:
+"""Execute a query on the database.
 
     Args:
         connection (psycopg2.connection): The connection to the database.
