@@ -21,5 +21,6 @@ setuptools.setup(
     python_requires=">=3.10.4",
     install_requires=[
         "psycopg2-binary",
+        "pandas",
     ],
 )
