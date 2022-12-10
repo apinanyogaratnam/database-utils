@@ -38,7 +38,7 @@ def create_connection(host: str, database: str, user: str, password: str, port: 
         )
         return connection
     except (Exception, psycopg2.DatabaseError) as error:
-        raise ConnectionError(error)
+        raise ConnectionError(error) from error
 
 
 def query_database(
