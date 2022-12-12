@@ -1,5 +1,7 @@
 VERSION := $(shell python setup.py --version)
 
+.PHONY: build
+
 lint:
 	flake8 .
 
