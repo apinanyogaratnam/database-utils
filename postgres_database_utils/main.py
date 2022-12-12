@@ -29,14 +29,7 @@ def create_connection(host: str, database: str, user: str, password: str, port: 
         psycopg2.connection: The connection to the database.
     """
     try:
-        connection = psycopg2.connect(
-            host=host,
-            database=database,
-            user=user,
-            password=password,
-            port=port,
-        )
-        return connection
+        return psycopg2.connect(host=host, database=database, user=user, password=password, port=port)
     except (Exception, psycopg2.DatabaseError) as error:
         raise ConnectionError(error) from error
 
