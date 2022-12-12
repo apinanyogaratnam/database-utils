@@ -12,7 +12,7 @@ class ConnectionError(Exception):
     pass
 
 
-def create_connection(host: str, database: str, user: str, password: str, port: int = 5432) -> psycopg2.connection:
+def create_connection(host: str, database: str, user: str, password: str, port: int = 5432) -> psycopg2.connect:
     """Create a connection to the database.
 
     Args:
@@ -42,7 +42,7 @@ def create_connection(host: str, database: str, user: str, password: str, port: 
 
 
 def query_database(
-    connection: psycopg2.connection, query: str, params: tuple | None = None, close_connection: bool = True
+    connection: psycopg2.connect, query: str, params: tuple | None = None, close_connection: bool = True
 ) -> list:
     """Execute a query on the database.
 
