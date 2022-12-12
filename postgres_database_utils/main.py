@@ -3,7 +3,7 @@ import warnings
 import pandas as pd
 import psycopg2
 
-warnings.ignorewarnings("ignore")
+warnings.filterwarnings("ignore")
 
 
 class ConnectionError(Exception):
