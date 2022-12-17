@@ -1,5 +1,7 @@
 # Postgres Database Utils
 
+[![Downloads](https://static.pepy.tech/personalized-badge/postgres-database-utils?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/postgres-database-utils)
+
 A python package for postgres database utilities.
 
 ## Table of Contents
