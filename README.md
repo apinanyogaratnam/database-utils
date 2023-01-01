@@ -39,3 +39,5 @@ Please [open an issue](https://github.com/apinanyogaratnam/postgres-database-uti
 ## Contributing
 
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/apinanyogaratnam/postgres-database-utils/compare/).
+
+<!-- TODO: remove parameters from create_connection except postgres credentials on next version update -->
