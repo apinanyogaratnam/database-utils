@@ -23,15 +23,11 @@ pip install database-utils
 
 Create a database connection:
 ```python
-from postgres_database_utils import create_connection
+from postgres_database_utils import create_connection, PostgresCredentials
 
-connection = create_connection(
-    host="localhost",
-    port=5432,
-    database="postgres",
-    user="postgres",
-    password="postgres",
-)
+credentials = PostgresCredentials(host='localhost', database='postgres', user='postgres', password='postgres', port=5432)
+
+connection = create_connection(credentials)
 ```
 
 ## Support
