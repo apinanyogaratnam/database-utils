@@ -36,15 +36,19 @@ def create_connection(postgres_credentials: PostgresCredentials) -> psycopg2.con
     if not postgres_credentials:
         raise ConnectionError('Credentials must be provided.')
     try:
-        host = postgres_credentials.host
-        database = postgres_credentials.database
-        user = postgres_credentials.user
-        password = postgres_credentials.password
-        port = postgres_credentials.port
-
-        return psycopg2.connect(host=host, database=database, user=user, password=password, port=port)
+        return _get_connection(postgres_credentials)
     except (Exception, psycopg2.DatabaseError) as error:
         raise ConnectionError(error) from error
+
+
+def _get_connection(postgres_credentials):
+    host = postgres_credentials.host
+    database = postgres_credentials.database
+    user = postgres_credentials.user
+    password = postgres_credentials.password
+    port = postgres_credentials.port
+
+    return psycopg2.connect(host=host, database=database, user=user, password=password, port=port)
 
 
 def query_database(
