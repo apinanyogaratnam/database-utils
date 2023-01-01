@@ -6,13 +6,22 @@ import psycopg2
 warnings.filterwarnings("ignore")
 
 
+class PostgresCredentials:
+    def __init__(self: 'PostgresCredentials', host: str, database: str, user: str, password: str, port: int = 5432) -> None:
+        self.host = host
+        self.database = database
+        self.user = user
+        self.password = password
+        self.port = port
+
+
 class ConnectionError(Exception):
     """Exception raised when connection to database fails."""
 
     pass
 
 
-def create_connection(host: str, database: str, user: str, password: str, port: int = 5432) -> psycopg2.connect:
+def create_connection(host: str, database: str, user: str, password: str, port: int = 5432, postgres_credentials: PostgresCredentials | None = None) -> psycopg2.connect:
     """Create a connection to the database.
 
     Args:
@@ -21,6 +30,7 @@ def create_connection(host: str, database: str, user: str, password: str, port: 
         user (str): The user to connect to the database.
         password (str): The password of the user.
         port (int, optional): The port of the database. Defaults to 5432.
+        postgres_credentials (PostgresCredentials, optional): The Postgres credentials class to use to access credentials.
 
     Raises:
         ConnectionError: If the connection fails.
@@ -29,6 +39,11 @@ def create_connection(host: str, database: str, user: str, password: str, port: 
         psycopg2.connection: The connection to the database.
     """
     try:
+        if postgres_credentials:
+            host = postgres_credentials.host
+            database = postgres_credentials.database
+            user = postgres_credentials.user
+            password = postgres_credentials.password
         return psycopg2.connect(host=host, database=database, user=user, password=password, port=port)
     except (Exception, psycopg2.DatabaseError) as error:
         raise ConnectionError(error) from error
@@ -51,7 +66,7 @@ def query_database(
     if not connection:
         raise ConnectionError("No connection to database.")
 
-    results = pd.read_sql(query, connection, params).replace({float("nan"): None}).to_dict(orient="records")
+    results = pd.read_sql(query, connection, params).replace(float("nan"), None).to_dict(orient="records")
 
     if close_connection:
         connection.close()
