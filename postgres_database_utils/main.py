@@ -40,6 +40,7 @@ def create_connection(postgres_credentials: PostgresCredentials) -> psycopg2.con
         database = postgres_credentials.database
         user = postgres_credentials.user
         password = postgres_credentials.password
+        port = postgres_credentials.port
 
         return psycopg2.connect(host=host, database=database, user=user, password=password, port=port)
     except (Exception, psycopg2.DatabaseError) as error:
