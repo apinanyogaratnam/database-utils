@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="postgres-database-utils",
-    version="0.3.0",
+    version="1.0.0",
     author="apinanyogaratnam",
     author_email="apinanapinan@icloud.com",
     description="A package for postgres database utilities",
